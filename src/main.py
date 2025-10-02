@@ -1,6 +1,6 @@
 import sys
 from .tokenizer import tokenize
-from .calculate import calculate
+from .calculator import calculate
 from .calculator_errors import CalculatorError
 
 

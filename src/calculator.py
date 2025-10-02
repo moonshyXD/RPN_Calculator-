@@ -51,7 +51,6 @@ def calculate(tokens: List[str]) -> Number:
 
         b = _pop(stack)
         a = _pop(stack)
-        print(b, a, token)
         result = OPERATORS[token](a, b)
         _push(stack, result)
 
