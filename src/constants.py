@@ -1,1 +1,1 @@
-SAMPLE_CONSTANT: int = 10
+MAX_POWER: float = 10 ** 6

@@ -1,20 +1,30 @@
-from src.power import power_function
-from src.constants import SAMPLE_CONSTANT
+import sys
+from .tokenizer import tokenize
+from .calculate import calculate
+from .calculator_errors import CalculatorError
 
 
-def main() -> None:
-    """
-    Обязательнная составляющая программ, которые сдаются. Является точкой входа в приложение
-    :return: Данная функция ничего не возвращает
-    """
+def run():
+    print(
+        "Welcome to RPN calculator! Enter RPN expressions, "
+        "tokens separated by spaces. "
+        "Parentheses allowed. "
+        "Unary +-($~) must be written with number without space."
+    )
+    for line in sys.stdin:
+        line = line.strip()
+        if not line:
+            continue
+        try:
+            tokens = tokenize(line)
+            result = calculate(tokens)
+            print(result)
+        except ValueError:
+            print("inf")
+        except CalculatorError as e:
+            print("CalculatorError:", e)
 
-    target, degree = map(int, input("Введите два числа разделенные пробелом: ").split(" "))
-
-    result = power_function(target=target, power=degree)
-
-    print(result)
-
-    print(SAMPLE_CONSTANT)
 
 if __name__ == "__main__":
-    main()
+    # Tests.test_calculator()
+    run()
