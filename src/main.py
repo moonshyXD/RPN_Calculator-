@@ -26,5 +26,4 @@ def run():
 
 
 if __name__ == "__main__":
-    # Tests.test_calculator()
     run()

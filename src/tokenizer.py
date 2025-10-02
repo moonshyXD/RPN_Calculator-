@@ -1,4 +1,3 @@
-import re
 from typing import List
 from .numbers import to_number
 
@@ -9,16 +8,17 @@ def tokenize(expression: str) -> List[str]:
     Assumes tokens are separated by whitespace.
     Numbers may have leading + or -.
     """
-    regular_verb = r"[()]|[~$]?\d+(?:\.\d+)?(?:e[+-]?\d+)?|[+\-*/%]+"
-    raw_tokens = re.findall(regular_verb, expression)
-
+    raw_tokens = expression.strip().split()
     tokens = []
-    for t in raw_tokens:
-        if t.startswith("~"):
-            tokens.append(str(-to_number(t[1:])))
-        elif t.startswith("$"):
-            tokens.append(t[1:])
+    for p in raw_tokens:
+        if p == '' or p is None:
+            continue
+        if p in ("(", ")"):
+            tokens.append(p)
+        if p[0] == "~":
+            tokens.append(str(-to_number(p[1:])))
+        elif p[0] == "$":
+            tokens.append(p[1:])
         else:
-            tokens.append(t)
-
+            tokens.append(p)
     return tokens
