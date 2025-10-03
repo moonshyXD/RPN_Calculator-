@@ -17,6 +17,7 @@ def handle_unary_minus(token: str) -> str:
             result = str(to_number(token[i:]))
             if count_minus % 2 != 0:
                 result = "-" + result
+            break
 
     return result
 
