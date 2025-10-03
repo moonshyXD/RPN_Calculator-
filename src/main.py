@@ -4,7 +4,12 @@ from .calculator import calculate
 from .calculator_errors import CalculatorError
 
 
-def run():
+def run() -> None:
+    """
+    Run the RPN calculator interactive session.
+    Reads expressions from standard input, tokenizes and calculates them,
+    handling various calculator errors appropriately.
+    """
     print(
         "Welcome to RPN calculator! Enter RPN expressions, "
         "tokens separated by spaces. "

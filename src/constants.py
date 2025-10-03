@@ -1,1 +1,1 @@
-MAX_POWER: float = 10 ** 6
+MAX_POWER: int = 10 ** 6

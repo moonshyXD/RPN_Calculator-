@@ -4,9 +4,12 @@ from .numbers import to_number
 
 def tokenize(expression: str) -> List[str]:
     """
-    Tokenize an RPN expression line.
-    Assumes tokens are separated by whitespace.
-    Numbers may have leading + or -.
+    Tokenize an RPN expression line into a list of tokens.
+    Handles special cases like negative numbers with '~' prefix
+    and variables with '$' prefix.
+
+    :param expression: The RPN expression.
+    :return: List of the tokens.
     """
     raw_tokens = expression.strip().split()
     tokens = []

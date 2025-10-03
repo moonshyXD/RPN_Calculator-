@@ -1,5 +1,5 @@
 from typing import List, Union
-from .numbers import to_number,  is_number
+from .numbers import to_number, is_number
 from .operations import OPERATORS
 from .calculator_errors import CalculatorSyntaxError
 
@@ -7,16 +7,37 @@ Number = Union[int, float]
 
 
 def _push(stack: List[List[Number]], value: Number) -> None:
+    """
+    Push a value onto the top stack.
+
+    :param stack: The stack of number lists.
+    :param value: The number value to push.
+    """
     stack[-1].append(value)
 
 
 def _pop(stack: List[List[Number]]) -> Number:
+    """
+    Pop a value from the top stack.
+
+    :param stack: The stack of number lists.
+    :return: The popped number value.
+    :raises CalculatorSyntaxError: If top stack is empty.
+    """
     if not stack[-1]:
         raise CalculatorSyntaxError("Not enough values for operation")
     return stack[-1].pop()
 
 
 def _handle_parentheses(stack: List[List[Number]], token: str) -> None:
+    """
+    Handle parentheses tokens in the expression.
+
+    :param stack: The stack of number lists.
+    :param token: The parenthesis token ("(" or ")").
+    :raises CalculatorSyntaxError: For unbalanced parentheses or
+    closed parentheses without open.
+    """
     if token == "(":
         stack.append([])
     elif token == ")":
@@ -26,12 +47,19 @@ def _handle_parentheses(stack: List[List[Number]], token: str) -> None:
         if len(inner) != 1:
             raise CalculatorSyntaxError(
                 "Parenthesis content must reduce to single value"
-                )
+            )
         _push(stack, inner[0])
 
 
 def calculate(tokens: List[str]) -> Number:
-    """Evaluate tokens in RPN. Supports parentheses as grouping."""
+    """
+    Evaluate tokens in RPN notation.
+
+    :param tokens: List of tokens from tokenized RPN expression.
+    :return: The calculated result as int or float.
+    :raises CalculatorSyntaxError: For syntax errors, unknown tokens,
+    unbalanced parentheses, or invalid expressions.
+    """
     stack: List[List[Number]] = [[]]
 
     for token in tokens:
