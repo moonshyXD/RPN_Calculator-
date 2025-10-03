@@ -5,50 +5,50 @@ from .constants import MAX_POWER
 
 def division(a: Number, b: Number) -> Number:
     """
-    Perform division with zero check and integer conversion.
+    Деление с проверкой деления на ноль.
 
-    :param a: Dividend (int or float)
-    :param b: Divisor (int or float)
-    :return: Division result as int if integer, else float
-    :raises CalculatorZeroDivisionError: If divisor is zero
+    :param a: Делимое (int или float).
+    :param b: Делитель (int или float).
+    :return: Результат деления (int, если результат целый, иначе float).
+    :raises CalculatorZeroDivisionError: Если делитель равен нулю.
     """
     if b == 0:
-        raise CalculatorZeroDivisionError("Float division by zero")
+        raise CalculatorZeroDivisionError("Деление на ноль (float)")
     result = a / b
     return int(result) if result.is_integer() else result
 
 
 def int_division(a: Number, b: Number) -> int:
     """
-    Perform integer division with type and zero checks.
+    Целочисленное деление с проверкой типов и деления на ноль.
 
-    :param a: Dividend (must be int)
-    :param b: Divisor (must be int)
-    :return: Integer division result
-    :raises CalculatorTypeError: If operands are not integers
-    :raises CalculatorZeroDivisionError: If divisor is zero
+    :param a: Делимое (только int).
+    :param b: Делитель (только int).
+    :return: Результат целочисленного деления.
+    :raises CalculatorTypeError: Если хотя бы один операнд не int.
+    :raises CalculatorZeroDivisionError: Если делитель равен нулю.
     """
     if not (isinstance(a, int) and isinstance(b, int)):
-        raise CalculatorTypeError("// works only with integers")
+        raise CalculatorTypeError("// работает только с целыми числами")
     if b == 0:
-        raise CalculatorZeroDivisionError("Integer division by zero")
+        raise CalculatorZeroDivisionError("Целочисленное деление на ноль")
     return a // b
 
 
 def modulo(a: Number, b: Number) -> int:
     """
-    Perform modulo operation with type and zero checks.
+    Операция взятия остатка от деления с проверкой типов и нуля.
 
-    :param a: Dividend (must be int)
-    :param b: Divisor (must be int)
-    :return: Modulo operation result
-    :raises CalculatorTypeError: If operands are not integers
-    :raises CalculatorZeroDivisionError: If divisor is zero
+    :param a: Делимое (только int).
+    :param b: Делитель (только int).
+    :return: Остаток от деления.
+    :raises CalculatorTypeError: Если хотя бы один операнд не int.
+    :raises CalculatorZeroDivisionError: Если делитель равен нулю.
     """
     if not (isinstance(a, int) and isinstance(b, int)):
-        raise CalculatorTypeError("% works only with integers")
+        raise CalculatorTypeError("% работает только с целыми числами")
     if b == 0:
-        raise CalculatorZeroDivisionError("Integer modulo by zero")
+        raise CalculatorZeroDivisionError("Остаток от деления на ноль")
     return a % b
 
 

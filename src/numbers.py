@@ -6,10 +6,10 @@ Number = Union[int, float]
 
 def parse_number(token: str) -> Optional[Number]:
     """
-    Parse token into int or float if possible, else return None.
+    Преобразовать str токен в int или float, если это возможно.
 
-    :param token: The string token to parse.
-    :return: int or float if valid number, else None.
+    :param token: str токен.
+    :return: int или float, если число корректное, иначе None.
     """
     try:
         if "." in token or "e" in token or "E" in token:
@@ -22,23 +22,23 @@ def parse_number(token: str) -> Optional[Number]:
 
 def to_number(token: str) -> Number:
     """
-    Convert token to number or raise CalculatorSyntaxError.
+    Преобразовать str токен в число или вызвать ошибку.
 
-    :param token: The string token to convert.
-    :return: int or float.
-    :raises CalculatorSyntaxError: if token is invalid.
+    :param token: str токен.
+    :return: int или float.
+    :raises CalculatorSyntaxError: Если токен не является числом.
     """
     value = parse_number(token)
     if value is None:
-        raise CalculatorSyntaxError(f"Invalid number: {token}")
+        raise CalculatorSyntaxError(f"Некорректное число: {token}")
     return value
 
 
 def is_number(token: str) -> bool:
     """
-    Check if token is a number.
+    Проверить, является ли токен числом.
 
-    :param token: The string token to check.
-    :return: True if valid number, False otherwise.
+    :param token: str токен.
+    :return: True, если число корректное, иначе False.
     """
     return parse_number(token) is not None

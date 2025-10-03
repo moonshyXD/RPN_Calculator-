@@ -1,18 +1,18 @@
 class CalculatorError(Exception):
-    """Base calculator error"""
+    """Базовое исключение калькулятора"""
     pass
 
 
 class CalculatorZeroDivisionError(CalculatorError, ZeroDivisionError):
-    """Division by zero in calculator"""
+    """Деление на ноль в калькуляторе"""
     pass
 
 
 class CalculatorTypeError(CalculatorError, TypeError):
-    """Wrong operand types in calculator"""
+    """Неверные типы операндов в калькуляторе"""
     pass
 
 
 class CalculatorSyntaxError(CalculatorError, SyntaxError):
-    """Syntax mistake in calculator expression"""
+    """Синтаксическая ошибка в выражении калькулятора"""
     pass

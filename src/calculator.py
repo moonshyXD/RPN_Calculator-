@@ -8,57 +8,57 @@ Number = Union[int, float]
 
 def _push(stack: List[List[Number]], value: Number) -> None:
     """
-    Push a value onto the top stack.
+    Добавить число в верхний стек.
 
-    :param stack: The stack of number lists.
-    :param value: The number value to push.
+    :param stack: Стек, состоящий из списков чисел.
+    :param value: Число для добавления.
     """
     stack[-1].append(value)
 
 
 def _pop(stack: List[List[Number]]) -> Number:
     """
-    Pop a value from the top stack.
+    Извлечь число из верхнего стека.
 
-    :param stack: The stack of number lists.
-    :return: The popped number value.
-    :raises CalculatorSyntaxError: If top stack is empty.
+    :param stack: Стек, состоящий из списков чисел.
+    :return: Извлечённое число.
+    :raises CalculatorSyntaxError: Если верхний стек пуст.
     """
     if not stack[-1]:
-        raise CalculatorSyntaxError("Not enough values for operation")
+        raise CalculatorSyntaxError("Недостаточно значений для операции")
     return stack[-1].pop()
 
 
 def _handle_parentheses(stack: List[List[Number]], token: str) -> None:
     """
-    Handle parentheses tokens in the expression.
+    Обработка токенов скобок в выражении.
 
-    :param stack: The stack of number lists.
-    :param token: The parenthesis token ("(" or ")").
-    :raises CalculatorSyntaxError: For unbalanced parentheses or
-    closed parentheses without open.
+    :param stack: Стек, состоящий из списков чисел.
+    :param token: Токен скобки '(' или ')'.
+    :raises CalculatorSyntaxError: При несбалансированных скобках или
+    закрывающей скобке без открывающей.
     """
     if token == "(":
         stack.append([])
     elif token == ")":
         if len(stack) == 1:
-            raise CalculatorSyntaxError("Closed parenthesis without open")
+            raise CalculatorSyntaxError("Закрывающая скобка без открывающей")
         inner = stack.pop()
         if len(inner) != 1:
             raise CalculatorSyntaxError(
-                "Parenthesis content must reduce to single value"
+                "Содержимое скобок должно сводиться к одному значению"
             )
         _push(stack, inner[0])
 
 
 def calculate(tokens: List[str]) -> Number:
     """
-    Evaluate tokens in RPN notation.
+    Вычислить выражение в обратной польской нотации (RPN).
 
-    :param tokens: List of tokens from tokenized RPN expression.
-    :return: The calculated result as int or float.
-    :raises CalculatorSyntaxError: For syntax errors, unknown tokens,
-    unbalanced parentheses, or invalid expressions.
+    :param tokens: Список токенов (результат токенизации выражения).
+    :return: Результат вычисления (int или float).
+    :raises CalculatorSyntaxError: При синтаксических ошибках,
+    неизвестных токенах, несбалансированных скобках или неверных выражениях.
     """
     stack: List[List[Number]] = [[]]
 
@@ -72,10 +72,10 @@ def calculate(tokens: List[str]) -> Number:
             continue
 
         if token not in OPERATORS:
-            raise CalculatorSyntaxError(f"Unknown token: {token}")
+            raise CalculatorSyntaxError(f"Неизвестный токен: {token}")
 
         if len(stack[-1]) < 2:
-            raise CalculatorSyntaxError(f"Not enough operands for {token}")
+            raise CalculatorSyntaxError(f"Недостаточно операндов для {token}")
 
         b = _pop(stack)
         a = _pop(stack)
@@ -83,9 +83,9 @@ def calculate(tokens: List[str]) -> Number:
         _push(stack, result)
 
     if len(stack) != 1:
-        raise CalculatorSyntaxError("Unbalanced parentheses")
+        raise CalculatorSyntaxError("Несбалансированные скобки")
 
     output = stack[0]
     if len(output) != 1:
-        raise CalculatorSyntaxError("Invalid RPN expression")
+        raise CalculatorSyntaxError("Некорректное выражение RPN")
     return output[0]

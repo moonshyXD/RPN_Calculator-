@@ -6,16 +6,11 @@ from .calculator_errors import CalculatorError
 
 def run() -> None:
     """
-    Run the RPN calculator interactive session.
-    Reads expressions from standard input, tokenizes and calculates them,
-    handling various calculator errors appropriately.
+    Запуск калькулятора RPN.
+    Считывает выражения из стандартного ввода,
+    токенизирует и вычисляет их,
+    обрабатывает различные ошибки калькулятора.
     """
-    print(
-        "Welcome to RPN calculator! Enter RPN expressions, "
-        "tokens separated by spaces. "
-        "Parentheses allowed. "
-        "Unary +-($~) must be written with number without space."
-    )
     for line in sys.stdin:
         line = line.strip()
         if not line:

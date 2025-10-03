@@ -2,7 +2,6 @@ import pytest  # type: ignore
 from src.tokenizer import tokenize
 from src.calculator import calculate
 
-# --- Наборы тестов ---
 
 tests_simple = [
     ("3 4 +", 7),                       # 3 + 4
@@ -82,11 +81,12 @@ incorrect_tests = tests_zero_division + tests_type_error \
 @pytest.mark.parametrize("expr, expected", correct_tests)
 def test_correct(expr, expected):
     """
-    Test correct Reverse Polish Notation (RPN) expressions.
+    Тестирование корректных выражений в обратной польской нотации (RPN).
 
-    :param expr: Expression in RPN format as a string.
-    :param expected: Expected evaluation result (int or float).
-    :raises AssertionError: If the actual result does not match the expected.
+    :param expr: Выражение в формате RPN в виде строки.
+    :param expected: Ожидаемый результат вычисления (int или float).
+    :raises AssertionError: Если фактический результат не совпадает с
+    ожидаемым.
     """
     tokens = tokenize(expr)
     result = calculate(tokens)
@@ -96,12 +96,13 @@ def test_correct(expr, expected):
 @pytest.mark.parametrize("expr, expected_exception", incorrect_tests)
 def test_exceptions(expr, expected_exception):
     """
-    Test invalid RPN expressions that should raise exceptions.
+    Тестирование некорректных выражений в RPN, которые должны
+    вызывать исключения.
 
-    :param expr: Expression in RPN format as a string.
-    :param expected_exception: The expected exception type
-                               (SyntaxError, ZeroDivisionError, TypeError).
-    :raises AssertionError: If the expected exception is not raised.
+    :param expr: Выражение в формате RPN в виде строки.
+    :param expected_exception: Тип ожидаемого исключения
+    (SyntaxError, ZeroDivisionError, TypeError).
+    :raises AssertionError: Если ожидаемое исключение не возникает.
     """
     with pytest.raises(expected_exception):
         tokens = tokenize(expr)
