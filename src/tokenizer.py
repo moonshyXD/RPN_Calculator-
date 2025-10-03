@@ -1,5 +1,6 @@
 from typing import List
 from .numbers import to_number
+from .calculator_errors import CalculatorSyntaxError
 
 
 def handle_unary_minus(token: str) -> str:
@@ -7,9 +8,10 @@ def handle_unary_minus(token: str) -> str:
     Process a token with one or multiple '~' prefixes representing unary minus.
     :param token: The token starting with '~'.
     :return: String result with precessed unary minus.
+    :raises CalculatorSyntaxError: if token is invalid.
     """
-    count_minus = 0
-    result: str
+    count_minus: int = 0
+    result: str = ""
     for i in range(len(token)):
         if token[i] == "~":
             count_minus += 1
@@ -19,6 +21,25 @@ def handle_unary_minus(token: str) -> str:
                 result = "-" + result
             break
 
+    if not (any(elem.isdigit() for elem in result)):
+        raise CalculatorSyntaxError(f"Unknown token: {token}")
+    return result
+
+
+def handle_unary_plus(token: str) -> str:
+    """
+    Process a token with one or multiple '~' prefixes representing unary minus.
+    :param token: The token starting with '~'.
+    :return: String result with precessed unary minus.
+    :raises CalculatorSyntaxError: if token is invalid.
+    """
+    result: str = ""
+    for i in range(len(token)):
+        if token[i] != "$":
+            result = str(to_number(token[i:]))
+
+    if not (any(elem.isdigit() for elem in result)):
+        raise CalculatorSyntaxError(f"Unknown token: {token}")
     return result
 
 
@@ -42,7 +63,8 @@ def tokenize(expression: str) -> List[str]:
             to_append = handle_unary_minus(token)
             tokens.append(to_append)
         elif token[0] == "$":
-            tokens.append(token[1:])
+            to_append = handle_unary_plus(token)
+            tokens.append(to_append)
         else:
             tokens.append(token)
     return tokens
