@@ -22,7 +22,7 @@ def run() -> None:
         except ValueError:
             print("inf")
         except CalculatorError as e:
-            print("CalculatorError:", e)
+            print(f"{type(e).__name__}: {e}")
 
 
 if __name__ == "__main__":

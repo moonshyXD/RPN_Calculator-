@@ -6,7 +6,7 @@ from .calculator_errors import CalculatorSyntaxError
 Number = Union[int, float]
 
 
-def _push(stack: List[List[Number]], value: Number) -> None:
+def push_value(stack: List[List[Number]], value: Number) -> None:
     """
     Добавить число в верхний стек.
 
@@ -16,7 +16,7 @@ def _push(stack: List[List[Number]], value: Number) -> None:
     stack[-1].append(value)
 
 
-def _pop(stack: List[List[Number]]) -> Number:
+def pop_value(stack: List[List[Number]]) -> Number:
     """
     Извлечь число из верхнего стека.
 
@@ -29,7 +29,7 @@ def _pop(stack: List[List[Number]]) -> Number:
     return stack[-1].pop()
 
 
-def _handle_parentheses(stack: List[List[Number]], token: str) -> None:
+def handle_parentheses(stack: List[List[Number]], token: str) -> None:
     """
     Обработка токенов скобок в выражении.
 
@@ -48,7 +48,7 @@ def _handle_parentheses(stack: List[List[Number]], token: str) -> None:
             raise CalculatorSyntaxError(
                 "Содержимое скобок должно сводиться к одному значению"
             )
-        _push(stack, inner[0])
+        push_value(stack, inner[0])
 
 
 def calculate(tokens: List[str]) -> Number:
@@ -62,25 +62,27 @@ def calculate(tokens: List[str]) -> Number:
     """
     stack: List[List[Number]] = [[]]
 
-    for token in tokens:
-        if token in ("(", ")"):
-            _handle_parentheses(stack, token)
+    for current_token in tokens:
+        if current_token in ("(", ")"):
+            handle_parentheses(stack, current_token)
             continue
 
-        if is_number(token):
-            _push(stack, to_number(token))
+        if is_number(current_token):
+            push_value(stack, to_number(current_token))
             continue
 
-        if token not in OPERATORS:
-            raise CalculatorSyntaxError(f"Неизвестный токен: {token}")
+        if current_token not in OPERATORS:
+            raise CalculatorSyntaxError(f"Неизвестный токен: {current_token}")
 
         if len(stack[-1]) < 2:
-            raise CalculatorSyntaxError(f"Недостаточно операндов для {token}")
+            raise CalculatorSyntaxError(
+                f"Недостаточно операндов для {current_token}"
+                )
 
-        b = _pop(stack)
-        a = _pop(stack)
-        result = OPERATORS[token](a, b)
-        _push(stack, result)
+        b = pop_value(stack)
+        a = pop_value(stack)
+        result = OPERATORS[current_token](a, b)
+        push_value(stack, result)
 
     if len(stack) != 1:
         raise CalculatorSyntaxError("Несбалансированные скобки")
