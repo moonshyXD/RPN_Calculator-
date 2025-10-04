@@ -1,5 +1,5 @@
 from typing import Union, Optional
-from .calculator_errors import CalculatorSyntaxError
+from src.calculator_errors import CalculatorSyntaxError
 
 Number = Union[int, float]
 

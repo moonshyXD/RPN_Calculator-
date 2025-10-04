@@ -1,6 +1,7 @@
-from .numbers import Number
-from .calculator_errors import CalculatorTypeError, CalculatorZeroDivisionError
-from .constants import MAX_POWER
+from src.numbers import Number
+from src.calculator_errors import CalculatorTypeError, \
+    CalculatorZeroDivisionError
+from src.constants import MAX_POWER
 
 
 def division(a: Number, b: Number) -> Number:

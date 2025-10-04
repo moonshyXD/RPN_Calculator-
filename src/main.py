@@ -1,7 +1,7 @@
 import sys
-from .tokenizer import tokenize
-from .calculator import calculate
-from .calculator_errors import CalculatorError
+from src.tokenizer import tokenize
+from src.calculator import calculate
+from src.calculator_errors import CalculatorError
 
 
 def run() -> None:

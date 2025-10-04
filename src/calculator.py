@@ -1,7 +1,7 @@
 from typing import List, Union
-from .numbers import to_number, is_number
-from .operations import OPERATORS
-from .calculator_errors import CalculatorSyntaxError
+from src.numbers import to_number, is_number
+from src.operations import OPERATORS
+from src.calculator_errors import CalculatorSyntaxError
 
 Number = Union[int, float]
 
