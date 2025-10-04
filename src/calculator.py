@@ -1,9 +1,8 @@
-from typing import List, Union
-from src.numbers import to_number, is_number
-from src.operations import OPERATORS
-from src.calculator_errors import CalculatorSyntaxError
+from typing import List
 
-Number = Union[int, float]
+from .calculator_errors import CalculatorSyntaxError
+from .numbers import Number, is_number, to_number
+from .operations import OPERATORS
 
 
 def push_value(stack: List[List[Number]], value: Number) -> None:

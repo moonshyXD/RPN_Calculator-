@@ -57,4 +57,8 @@
 
 ## Тестирование
 
-Для запуска тестов установите [зависимости](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Затем, находясь в корневой папке проекта пропишите команду ```pytest tests/```.
+Для запуска тестов установите [зависимости](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Затем, находясь в корневой папке проекта пропишите команду ```pytest tests```.
+
+## Закрытие программы
+
+Для успешного закрытия программы в консоли следует нажать комбинацию клавиш Ctrl+D.
