@@ -28,7 +28,7 @@
 
 ## Установка зависимостей
 
-В папке [requirements/](https://github.com/moonshyXD/RPN_Calculator-/tree/main/requirements) находятся зависимости для разработки [dev.txt](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/dev.txt) и для запуска дальнейших тестов [test.txt](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Для установки зависимостей выполните следующие шаги, заранее находясь в корне проекта:
+В папке [requirements/](https://github.com/moonshyXD/RPN_Calculator-/tree/main/requirements) находятся зависимости для разработки [dev.txt](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/dev.txt) и для запуска дальнейших тестов [test.txt](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Для установки зависимостей выполните следующие шаги, заранее находясь в папке RPN_Calcultor-/ (корень проекта):
 
 1. Создайте виртуальное окружение
 
@@ -44,12 +44,12 @@
 
 3. Установка зависимостей
 
-Для разработки ```pip3 install -r dev.txt```
-Для запуска тестов ```pip3 install -r test.txt```
+Для разработки ```pip3 install -r requirements/dev.txt```
+Для запуска тестов ```pip3 install -r requirements/test.txt```
 
 ## Запуск программы
 
-Для корректного запуска программы перейдите в корень проекта. Пропишите в консоли команду ```python3 -m src.main```. Теперь вы можете вводить выражение в обратной польской нотации (RPN) и калькулятор посчитает его.
+Для корректного запуска программы перейдите в папку RPN_Calcultor-/ (корень проекта). Пропишите в консоли команду ```python3 -m src.main```. Теперь вы можете вводить выражение в обратной польской нотации (RPN) и калькулятор посчитает его.
 
 ## Правила ввода выражения
 
@@ -57,4 +57,4 @@
 
 ## Тестирование
 
-Для запуска тестов установите [зависимости](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Затем, находясь в корневой папке проекта пропишите команду ```pytest tests```.
+Для запуска тестов установите [зависимости](https://github.com/moonshyXD/RPN_Calculator-/blob/main/requirements/test.txt). Затем, находясь в корневой папке проекта пропишите команду ```pytest tests/```.

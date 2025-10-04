@@ -1,6 +1,6 @@
 from typing import List
-from .numbers import to_number
-from .calculator_errors import CalculatorSyntaxError
+from src.numbers import to_number
+from src.calculator_errors import CalculatorSyntaxError
 
 
 def handle_unary_minus(token: str) -> str:
