@@ -1,10 +1,9 @@
-from typing import Union, Optional
 from src.calculator_errors import CalculatorSyntaxError
 
-Number = Union[int, float]
+Number = (int | float)
 
 
-def parse_number(token: str) -> Optional[Number]:
+def parse_number(token: str) -> Number | None:
     """
     Преобразовать str токен в int или float, если это возможно.
 
@@ -42,3 +41,4 @@ def is_number(token: str) -> bool:
     :return: True, если число корректное, иначе False.
     """
     return parse_number(token) is not None
+
