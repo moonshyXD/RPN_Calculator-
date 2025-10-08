@@ -1,11 +1,9 @@
-from typing import List
-
 from .calculator_errors import CalculatorSyntaxError
 from .numbers import Number, is_number, to_number
 from .operations import OPERATORS
 
 
-def push_value(stack: List[List[Number]], value: Number) -> None:
+def push_value(stack: list[list[Number]], value: Number) -> None:
     """
     Добавить число в верхний стек.
 
@@ -15,7 +13,7 @@ def push_value(stack: List[List[Number]], value: Number) -> None:
     stack[-1].append(value)
 
 
-def pop_value(stack: List[List[Number]]) -> Number:
+def pop_value(stack: list[list[Number]]) -> Number:
     """
     Извлечь число из верхнего стека.
 
@@ -28,7 +26,7 @@ def pop_value(stack: List[List[Number]]) -> Number:
     return stack[-1].pop()
 
 
-def handle_parentheses(stack: List[List[Number]], token: str) -> None:
+def handle_parentheses(stack: list[list[Number]], token: str) -> None:
     """
     Обработка токенов скобок в выражении.
 
@@ -50,7 +48,7 @@ def handle_parentheses(stack: List[List[Number]], token: str) -> None:
         push_value(stack, inner[0])
 
 
-def calculate(tokens: List[str]) -> Number:
+def calculate(tokens: list[str]) -> Number:
     """
     Вычислить выражение в обратной польской нотации (RPN).
 
@@ -59,7 +57,7 @@ def calculate(tokens: List[str]) -> Number:
     :raises CalculatorSyntaxError: При синтаксических ошибках,
     неизвестных токенах, несбалансированных скобках или неверных выражениях.
     """
-    stack: List[List[Number]] = [[]]
+    stack: list[list[Number]] = [[]]
 
     for current_token in tokens:
         if current_token in ("(", ")"):
@@ -90,3 +88,4 @@ def calculate(tokens: List[str]) -> Number:
     if len(output) != 1:
         raise CalculatorSyntaxError("Некорректное выражение RPN")
     return output[0]
+
