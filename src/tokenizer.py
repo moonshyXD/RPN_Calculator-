@@ -69,4 +69,3 @@ def tokenize(expression: str) -> list[str]:
         else:
             tokens.append(token)
     return tokens
-
