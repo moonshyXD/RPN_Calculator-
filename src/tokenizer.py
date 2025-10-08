@@ -1,4 +1,3 @@
-from typing import List
 from src.numbers import to_number
 from src.calculator_errors import CalculatorSyntaxError
 
@@ -42,7 +41,7 @@ def handle_unary_plus(token: str) -> str:
     return result
 
 
-def tokenize(expression: str) -> List[str]:
+def tokenize(expression: str) -> list[str]:
     """
     Разбить строку выражения RPN на список токенов.
     Обрабатывает:
@@ -55,7 +54,7 @@ def tokenize(expression: str) -> List[str]:
     :return: Список токенов.
     """
     raw_tokens = expression.strip().split()
-    tokens: List[str] = []
+    tokens: list[str] = []
     for token in raw_tokens:
         if token == '' or token is None:
             continue
@@ -70,3 +69,4 @@ def tokenize(expression: str) -> List[str]:
         else:
             tokens.append(token)
     return tokens
+
